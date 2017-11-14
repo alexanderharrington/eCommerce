@@ -1,0 +1,127 @@
+<!doctype HTML>
+<html>
+  
+    <head>
+        <title></title>
+        <style>
+
+            div{
+                background-color: whitesmoke
+            }
+        </style>
+    
+        <script>
+            var pr1 =15, wspr1 =10 
+            var pr2 =13, wspr2 =10
+            var pr3 =11, wspr3 =10
+            var tax = 8.75
+            
+           
+
+            function initPrices(){
+                document.getElementById("span1").innerHTML = "price: $"+pr1;
+                document.getElementById("span2").innerHTML = "price: $"+pr2;
+                document.getElementById("span3").innerHTML = "price: $"+pr3;
+            }
+
+            function ProcessOrder(){
+                var qty1 = parseInt(document.getElementById("qty1").value)
+                var qty2 = parseInt(document.getElementById("qty2").value)
+                var qty3 = parseInt(document.getElementById("qty3").value)
+                 
+
+            //cusotmer 
+                var subtotal = (pr1*qty1)+(pr2*qty2)+(pr3*qty3)
+
+                var taxTotal = value= (subtotal / tax).toFixed(2)
+
+                var shipping = value= 0
+                var total =subtotal + shipping + taxTotal
+
+            // company
+                var companySubtotal = (wspr1*qty1)+(wspr2*qty2)+(wspr3*qty3)
+                var itemsSold = qty1 + qty2 + qty3
+                var profit = subtotal - companySubtotal 
+                
+        
+                if(subtotal < 100){
+                    shipping = 25;
+                }else if(subtotal >= 100 && subtotal < 200){
+                    shipping = 10;
+                }else{
+                    shipping = 0;
+                }
+            
+                var op = document.getElementById("op");
+
+                 
+                var build = "";
+                build += "Customer Informantion";
+                build += "<br>"
+                build += "Subtotal:          $" + subtotal ;
+                build += "<br>"
+                build += "Tax:               $" + taxTotal;
+                build += "<br>"
+                build += "Shipping:          $" + shipping;
+                build += "<br>"
+                build += "Total:             $" +total ;
+                build += "<br>"
+                build += "<hr>"
+                build += "<br>"
+                build += "Company Information"
+                build += "<br>"
+                build += "Customer Subtotal: $" + subtotal;
+                build += "<br>"
+                build += "Company Subtotal:  $" + companySubtotal;
+                build += "<br>"
+                build += "Profit:            $" + profit;
+                build += "<br>"
+                build += "Total Items Sold:" + itemsSold; 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 op.innerHTML= build
+                 }
+                 
+
+                
+
+
+
+        </script>        
+    </head>
+    <body onload="initPrices()"> 
+        <h1>Alexander Athletics </h1>
+        <div>
+            <img src = "football.jpg"><br>
+            <p>A game size NFL football</p><br>
+            <span id="span1"></span>
+            <input type="text" id="qty1" placeholder="Enter #">
+        </div>
+        <hr>
+        <div>
+            <img src = "basketball.jpg"><br>
+            <p>A bouncy NBA basketball</p><br>
+            <span id="span2"></span>
+            <input type="text" id="qty2" placeholder="Enter #">
+        </div>
+        <hr>
+        <div>
+            <img src = "soccerball.jpg"><br>
+            <p>A kickable FIFA soccerball </p><br>
+            <span id="span3"></span>
+            <input type="text" id="qty3" placeholder="Enter #">
+            <br>
+            
+        </div>
+        <hr>
+        <button onclick="ProcessOrder()">Process Order</button>
+        <br>
+        <div id="op"></div>
+        
+    </body>
+</html>
